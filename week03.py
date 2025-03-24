@@ -1,31 +1,12 @@
-# groups = ['HOT','Seventeen', 'Black Pink',"NJZ"]
-# #ratings = [1,2,4,3,100]
-# ratings = [1,2,4,3]
-#
-# groups_rating = list(zip(groups, ratings)) # zip 함수
-# print(groups_rating)
+def intersection(l1,l2):
+    l3 =list()
+    for v in l1:
+        if v in l2:
+            l3.append(v)
+    return l3
 
-def duplicate_city(cities):
-    result = list()
-    s = set()
-
-    for city in cities:
-        l1 = len(s)
-        s.add(city)
-        l2 = len(s)
-        if l1 == l2: # 중복 값이 들어온 경우
-            result.append(city)
-
-    return result
+l1 = [45,5,22,31,7,19]
+l2 = [2,1,5,22,7,38,27,19,13,41]
+print(intersection(l1,l2))
 
 
-
-
-
-
-cities =['Incheon','Incheon','Incheon','Gimpo','Seoul','Seoul']
-# cities = {'Incheon','Incheon','Incheon','Gimpo','Seoul','Seoul'}
-cities.append('Anyang')
-cities.append('Seoul')
-print(cities)
-print(set(duplicate_city(cities)))
