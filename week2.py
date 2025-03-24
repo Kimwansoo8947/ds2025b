@@ -6,5 +6,5 @@ result = 0
 # for i in range(1, n+1):
 #     result = result + i
 
-result = n*(n+1)//2
+result = n*(n+1)//2 # 반복문 없이 1 ~ n (상수 시간)
 print(result)
