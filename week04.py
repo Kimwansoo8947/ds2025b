@@ -1,3 +1,4 @@
+
 class Node:
     def __init__(self, data, link = None):
         self.data = data
@@ -15,9 +16,19 @@ class LinkedList:
         current = self.head
         while current.link:
             current = current.link # 다음 노드로 이동
-            current.link = Node(data)
+        current.link = Node(data)
+
+    def __str__(self):
+        node = self.head
+        out_texts = ""
+        while node is not None:
+            # print(node.data)
+            out_texts =  out_texts + str(node.data) + "->" # 문자열 결합
+            node = node.link
+        return out_texts + " end"
 
 ll = LinkedList()
 ll.append(8)
 ll.append(10)
 ll.append(-9)
+print(ll)
