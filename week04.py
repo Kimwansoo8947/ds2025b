@@ -1,3 +1,4 @@
+import random
 
 class Node:
     def __init__(self, data, link = None):
@@ -38,10 +39,19 @@ class LinkedList:
             node = node.link
         return out_texts + " end"
 
+# ll = LinkedList()
+# ll.append(8)
+# ll.append(10)
+# ll.append(-9)
+# print(ll)
+# print(ll.search(100))
+# print(ll.search(10))
+
 ll = LinkedList()
-ll.append(8)
-ll.append(10)
-ll.append(-9)
+
+# for i in range(20)
+for _ in range(20): # 인덱스 값을 사용하지 않음
+    ll.append(random.randint(1,30))
+
 print(ll)
-print(ll.search(100))
 print(ll.search(10))
