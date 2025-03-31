@@ -23,7 +23,8 @@ class LinkedList:
         out_texts = ""
         while node is not None:
             # print(node.data)
-            out_texts =  out_texts + str(node.data) + "->" # 문자열 결합
+            # out_texts =  out_texts + str(node.data) + "->" # 문자열 결합
+            out_texts = out_texts + f"{node.data} -> "
             node = node.link
         return out_texts + " end"
 
