@@ -29,6 +29,7 @@ class LinkedList:
         while current:
             if current.data == target:
                 previous.link = current.link
+                current.link = None
             previous = current
             current = current.link
 
