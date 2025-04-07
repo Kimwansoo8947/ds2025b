@@ -20,16 +20,19 @@ class LinkedList:
         current.link = Node(data)
 
     def remove(self, target):
+        current = self.head
         if self.head.data == target: # 삭제할 값이 첫번째 노드인 경우
             self.head =self.head.link
+            current.link = None
             return
-        current = self.head
+
         previous =None
 
         while current:
             if current.data == target:
                 previous.link = current.link
                 current.link = None
+                break
             previous = current
             current = current.link
 
@@ -61,7 +64,7 @@ ll.append(-9)
 print(ll)
 print(ll.search(100))
 print(ll.search(10))
-ll.remove(10)
+ll.remove(-9)
 ll.remove(8)
 ll.remove(90)
 print(ll)
