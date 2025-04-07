@@ -1,3 +1,4 @@
+# import random
 
 class Node:
     def __init__(self, data, link = None):
@@ -34,7 +35,7 @@ class LinkedList:
 
     def search(self, target):
         current = self.head
-        while current.link:
+        while current:
             if current.data == target:
                 return f"{target}을(를) 찾았습니다."
             else:
