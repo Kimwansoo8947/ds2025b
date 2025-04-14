@@ -32,6 +32,7 @@ class Queue:
 
         if self.front is None:
             self.rear = None
+        temp.link = None # 수정
 
         return temp.data
 
