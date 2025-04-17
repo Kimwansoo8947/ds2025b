@@ -505,7 +505,7 @@ def check_parentheses2(expression :str) -> bool:
 class Node:
     def __init__(self, data, link =None):
         self.data = data
-        self.link = None
+        self.link = link
 
 class Queue:
     def __init__(self):
