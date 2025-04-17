@@ -51,10 +51,7 @@ print(result)
 
 
 import  random
-from email.errors import NonPrintableDefect
 
-
-from week03 import an_array
 
 # 알고리즘 분석
 n = int(input("정수 입력: "))
