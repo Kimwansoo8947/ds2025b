@@ -524,7 +524,8 @@ class Queue:
     def dequeue(self):
         if self.front is None:
             raise IndexError ("Queue is empty!")
-
+            
+        self.size -= 1
         temp = self.front
         self.front = self.front.link
 
