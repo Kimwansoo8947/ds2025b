@@ -301,7 +301,7 @@ class LinkedList:
         current = self.head
         if self.head.data == target: # 첫번째 노드가 삭제 대상일 경우
             self.head = self.head.link # head를 다음노드로 변경
-            current = None
+            current.link = None
         return
 
         previous  = None # 현재 노드의 이전 노드를 저장한 변수
