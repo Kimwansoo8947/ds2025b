@@ -470,8 +470,9 @@ def check_parentheses2(expression :str) -> bool:
     stack = []
 
     for letter in expression:
-        if letter == "(" or "{":
+        if letter == "(" or letter == "{":
             stack.append(letter)
+            
         elif letter == ")":
             if len(stack) == 0 or stack[-1] != "(":
                 return False
