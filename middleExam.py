@@ -530,7 +530,7 @@ class Queue:
         self.front = self.front.link
 
         if self.front is None:
-            self.reat = None
+            self.rear = None
         temp.link = None
 
         return temp.data
