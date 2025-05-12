@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ff2f4e3-8907-4504-af47-192c95840b47" name="Changes" comment="v1.8Linkedlist">
-      <change beforePath="$PROJECT_DIR$/week04.py" beforeDir="false" afterPath="$PROJECT_DIR$/week04.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week2_hw.py" beforeDir="false" afterPath="$PROJECT_DIR$/week2_hw.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week10.py" beforeDir="false" afterPath="$PROJECT_DIR$/week10.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Kimwansoo8947&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Kimwansoo8947/ds2025b.git&quot;,
@@ -43,20 +39,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.week03.executor&quot;: &quot;Run&quot;,
-    &quot;Python.week03_1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.week04.executor&quot;: &quot;Run&quot;,
-    &quot;Python.week04_1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.week2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.week2_hw.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.week03.executor": "Run",
+    "Python.week03_1.executor": "Run",
+    "Python.week04.executor": "Run",
+    "Python.week04_1.executor": "Run",
+    "Python.week10.executor": "Run",
+    "Python.week2.executor": "Run",
+    "Python.week2_hw.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main"
   }
-}</component>
-  <component name="RunManager" selected="Python.week04_1">
+}]]></component>
+  <component name="RunManager" selected="Python.week10">
     <configuration name="week03" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ds2025b" />
       <option name="ENV_FILES" value="" />
@@ -145,7 +142,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="week2_hw" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="week10" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ds2025b" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,7 +155,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2_hw.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week10.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -169,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.week10" />
         <item itemvalue="Python.week04_1" />
         <item itemvalue="Python.week03_1" />
         <item itemvalue="Python.week04" />
         <item itemvalue="Python.week03" />
-        <item itemvalue="Python.week2_hw" />
       </list>
     </recent_temporary>
   </component>

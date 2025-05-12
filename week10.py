@@ -1,5 +1,3 @@
-from xmlrpc.client import Boolean
-
 
 class TreeNode:
     def __init__(self):
@@ -60,21 +58,17 @@ def search(find_number):
     current = root
     while True:
         if find_number == current.data:
-            print(f"{find_number}을(를) 찾았습니다")
-            break
+            return True
+
         elif find_number < current.data:
             if current.left is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
-                break
+                return False
             current = current.left
+
         else:
             if current.right is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
-                break
+                return False
             current = current.right
-
-
-
 
 if __name__ == "__main__":
     numbers = [10,15,8,3,9]  # 삽입할 숫자 리스트
@@ -93,8 +87,11 @@ if __name__ == "__main__":
     print()
 
     number = int(input("찾고자 하는 값: "))
-    search(number) # search 함수에 입력 부분 제거, 출력 부분 제거, 함수의 매개변수는 찾고자 하는 값, 리턴 값은 bool
 
+    if search(number): # search 함수에 입력 부분 제거, 출력 부분 제거, 함수의 매개변수는 찾고자 하는 값, 리턴 값은 bool
+        print(f"{number}을(를) 찾았습니다")
+    else:
+        print(f"{number}이(가) 존재하지 않습니다")
 
 
 
