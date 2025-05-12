@@ -73,29 +73,27 @@ def search(find_number):
 
 def delete(node, value):
     if node is None:
-        return  None
+        return None
 
     if value < node.data:
-        node.left = delete(node.left,value)
-
+        node.left = delete(node.left, value)
     elif value > node.data:
-        node.right = delete(node.right,value)
+        node.right = delete(node.right, value)
 
-    else:
-        # 삭제할 노드 발견
-        # 자식이 없는 leaf 노드거나 자식이 하나만 있는 경우
+    else:  # 삭제할 노드 발견
+       # 자식이 없는 leaf 노드거나 자식이 하나만 있는 경우
         if node.left is None:
             return node.right
-
         elif node.right is None:
             return node.left
 
-        # 자식이 2개인 경우
+        # 자식이 둘 다 있는 경우: 오른쪽 서브트리의 최솟값으로 대체
         min_larger_node = node.right
         while min_larger_node.left:
-            min_larger_node = min_larger_node.left  # move
-            node.data = min_larger_node.data
-            node.right = delete(node.right,min_larger_node.data)
+            min_larger_node = min_larger_node.left # move
+
+        node.data = min_larger_node.data  # 값 복사
+        node.right = delete(node.right, min_larger_node.data)  # 오른쪽 서브트리에서 중복값 제거
 
     return node
 
