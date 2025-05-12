@@ -51,6 +51,28 @@ def insert(root, value):
 
     return root # 루트 노트를 반환
 
+# search 함수
+def search():
+    find_number = int(input("찾고자 하는 값: "))
+
+    current = root
+    while True:
+        if find_number == current.data:
+            print(f"{find_number}을(를) 찾았습니다")
+            break
+        elif find_number < current.data:
+            if current.left is None:
+                print(f"{find_number}이(가) 존재하지 않습니다")
+                break
+            current = current.left
+        else:
+            if current.right is None:
+                print(f"{find_number}이(가) 존재하지 않습니다")
+                break
+            current = current.right
+
+
+
 if __name__ == "__main__":
     numbers = [10,15,8,3,9]  # 삽입할 숫자 리스트
     root = None # 초기 루트는 None
@@ -62,6 +84,13 @@ if __name__ == "__main__":
     print("BST 구성완료")
     post_order(root) # 후위 순회 결과 출력
     print()
-    pre_order(root)
+    in_order(root) # 중위 순회 결과 출력
     print()
-    in_order(root)
+    pre_order(root) # 전위 순회 결과 출력
+    print()
+
+    search()
+
+
+
+
