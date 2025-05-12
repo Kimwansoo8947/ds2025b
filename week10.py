@@ -8,7 +8,7 @@ class TreeNode:
 def pre_order(node):
     if node is None:
         return
-    print(node.data, end = ' ')
+    print(node.data, end = '->')
     pre_order(node.left)
     pre_order(node.right)
 
@@ -16,7 +16,7 @@ def in_order(node):
     if node is None:
         return
     pre_order(node.left)
-    print(node.data, end=' ')
+    print(node.data, end='->')
     pre_order(node.right)
 
 def post_order(node): # 후위 순회 (L R P)
@@ -24,7 +24,7 @@ def post_order(node): # 후위 순회 (L R P)
         return
     post_order(node.left) # 왼쪽 서브트리 순회
     post_order(node.right) # 오른쪽 서브트리 순회
-    print(node.data, end =' ') # 현재 노드 출력
+    print(node.data, end ='->') # 현재 노드 출력
 
 # BST에 값을 삽입하는 함수
 def insert(root, value):
@@ -43,6 +43,7 @@ def insert(root, value):
                 break
 
             current = current.left # move (더 왼쪽으로 이동)
+
         else: # 오른쪽으로 가야 하는 경우
             if current.right is None: # 오른쪽 자식이 비어 있으면 삽입
                 current.right = new_node
@@ -70,8 +71,32 @@ def search(find_number):
                 return False
             current = current.right
 
+def delete(node, value):
+    if node is None:
+        return  None
+
+    if value < node.data:
+        node.left = delete(node.left,value)
+
+    elif value > node.data:
+        node.right = delete(node.right,value)
+
+    else:
+        # 삭제할 노드 발견
+        # 자식이 없는 leaf 노드거나 자식이 하나만 있는 경우
+        if node.left is None:
+            return node.right
+
+        elif node.right is None:
+            return node.left
+
+        # 자식이 2개인 경우
+
+    return node
+
+
 if __name__ == "__main__":
-    numbers = [10,15,8,3,9]  # 삽입할 숫자 리스트
+    numbers = [10,15,8,3,9,14]  # 삽입할 숫자 리스트
     root = None # 초기 루트는 None
 
     # 리스트의 숫자들을 하나씩 BST에 삽입
@@ -92,6 +117,12 @@ if __name__ == "__main__":
         print(f"{number}을(를) 찾았습니다")
     else:
         print(f"{number}이(가) 존재하지 않습니다")
+
+    # 삭제
+    del_number = int(input("제거 하는 값: "))
+    root = delete(root, del_number)
+    post_order(root)
+
 
 
 
