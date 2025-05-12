@@ -91,6 +91,11 @@ def delete(node, value):
             return node.left
 
         # 자식이 2개인 경우
+        min_larger_node = node.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left  # move
+            node.data = min_larger_node.data
+            node.right = delete(node.right,min_larger_node.data)
 
     return node
 
@@ -121,7 +126,12 @@ if __name__ == "__main__":
     # 삭제
     del_number = int(input("제거 하는 값: "))
     root = delete(root, del_number)
-    post_order(root)
+    post_order(root) # 후위 순회 결과 출력
+    print()
+    in_order(root) # 중위 순회 결과 출력
+    print()
+    pre_order(root) # 전위 순회 결과 출력
+    print()
 
 
 
