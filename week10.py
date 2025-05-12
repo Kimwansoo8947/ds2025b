@@ -1,3 +1,6 @@
+from xmlrpc.client import Boolean
+
+
 class TreeNode:
     def __init__(self):
         self.left = None # 왼쪽 자식 노드
@@ -52,8 +55,7 @@ def insert(root, value):
     return root # 루트 노트를 반환
 
 # search 함수
-def search():
-    find_number = int(input("찾고자 하는 값: "))
+def search(find_number):
 
     current = root
     while True:
@@ -73,6 +75,7 @@ def search():
 
 
 
+
 if __name__ == "__main__":
     numbers = [10,15,8,3,9]  # 삽입할 숫자 리스트
     root = None # 초기 루트는 None
@@ -89,7 +92,8 @@ if __name__ == "__main__":
     pre_order(root) # 전위 순회 결과 출력
     print()
 
-    search()
+    number = int(input("찾고자 하는 값: "))
+    search(number) # search 함수에 입력 부분 제거, 출력 부분 제거, 함수의 매개변수는 찾고자 하는 값, 리턴 값은 bool
 
 
 
