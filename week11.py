@@ -31,4 +31,4 @@ bfs(graph, 6 , visited_bfs)
 # 방문했던 곳은 return
 
 
-# DFS 너비 우선 탐색 재귀함수 사용하지 않음
+# BFS 너비 우선 탐색 재귀함수 사용하지 않음
