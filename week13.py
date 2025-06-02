@@ -1,9 +1,26 @@
-from pickletools import read_stringnl_noescape
-
-
+# 부모가 같지 않을떄만 union 연산을 한다.
 class Graph:
 	def __init__ (self, size):
 		self.graph = [[0 for _ in range(size)] for _ in range(size)]
+
+class DisjointSet: # 크루스컬 알고리즘을 위한 유틸리티 클래스
+	def __init__(self, n):
+		self.parent = [i for i in range(n)]
+
+	def find(self ,x):
+		if self.parent[x] !=x:
+			self.parent[x] = self.find(self.parent[x])
+		return self.parent[x]
+
+	def union(self,x,y):
+		x_root = self.find(x)
+		y_root = self.find(y)
+
+		if x_root != y_root: # 같지 않으면
+			self.parent[y_root] = x_root # 덮어쓰기
+			return True
+		return False
+
 
 def print_graph(g) :
 	print(' ', end = ' ')
@@ -47,19 +64,19 @@ def print_graph(g) :
 # 	else :
 # 		return False
 
-# 재귀함수 이용
-def dfs(g,i, visited):
-	visited.append(i) # 시작위치 넣고 시작
-	for j in range(len(g.graph)):
-		if g.graph[i][j]  > 0 and j not in visited:
-			dfs(g,j, visited)
-
-
-def find_vertex(g, find_vtx):
-	visited_ary = []
-	start = 0
-	dfs(g,start, visited_ary)
-	return find_vtx in visited_ary # True or False (내가 찾고자 하는 도시가 있으면 True)
+# # 재귀함수 이용
+# def dfs(g,current, visited):
+# 	visited.append(current) # 시작위치 넣고 시작
+# 	for vertex in range(graph_size):
+# 		if g.graph[current][vertex]  > 0 and vertex not in visited:
+# 			dfs(g,vertex, visited)
+#
+#
+# def find_vertex(g, find_vtx):
+# 	visited_ary = list()
+# 	start = 0
+# 	dfs(g,start, visited_ary)
+# 	return find_vtx in visited_ary # True or False (내가 찾고자 하는 도시가 있으면 True)
 
 g1 = None
 name_ary = ['인천', '서울', '강릉', '대전', '광주', '부산']
@@ -85,40 +102,27 @@ for i in range(graph_size) :
 			edge_ary.append([g1.graph[i][j], i, j]) # 시작 도시와 도착 도시 간선을 추가
 print(edge_ary)
 
-edge_ary.sort(reverse=True) # 원본을 가중치 기준으로 내림차순으로 정렬
+edge_ary.sort() # 오름차순
 print(edge_ary)
 
-new_ary = list()
-for i in range(1, len(edge_ary), 2): # 1,3,5,7 ... 2씩 증가
-	new_ary.append(edge_ary[i])
-print(new_ary)
 
-index = 0
-while len(new_ary) > graph_size - 1:	# 간선의 개수가 '정점 개수-1'일 때까지 반복
-    # 백업 (3줄)
-	start = new_ary[index][1] # new_ary (간선) 출발도시
-	end = new_ary[index][2] # 도착도시
-	save_cost = new_ary[index][0] # 가중치
+ds = DisjointSet(graph_size)
+mst_edges = list()
+mst_cost = 0
 
-    # 시작도시 도착 도시 0으로 초기화
-	g1.graph[start][end] = 0
-	g1.graph[end][start] = 0
+for cost, s, e in edge_ary:
+	if ds.union(s,e):
+		mst_edges.append((cost, s,e))
+		mst_cost = mst_cost + cost
 
-    # 그래프가 삭제된 후 연결이 되어 있는지 확인하는 find_vertex 함수 호출
-	start_reachable = find_vertex(g1, start)
-	end_reachable = find_vertex(g1, end)
-
-
-	if start_reachable and end_reachable :
-		del new_ary[index] # 삭제
-	else:
-        # 백업해 놓은거 복원
-		g1.graph[start][end] = save_cost
-		g1.graph[end][start] = save_cost
-		index = index + 1 # 인덱스 증가 (끝내야 함)  (중요)
+mst_graph = Graph(graph_size)
+for cost, s, e in mst_edges:
+	# 무방향
+	mst_graph.graph[s][e] = cost
+	mst_graph.graph[e][s] = cost
 
 print('최소 비용의 계산')
-print_graph(g1)
+print_graph(mst_graph)
 
 total_cost = 0
 for i in range(graph_size):
@@ -127,4 +131,4 @@ for i in range(graph_size):
 			total_cost = total_cost + g1.graph[i][k]
 
 total_cost = total_cost // 2 # 무방향 그래프니까 절반은 날려야함
-print(f"최소 비용의 도로 건설 비용 :  {total_cost}")
+print(f"최소 비용의 도로 건설 비용 :  {mst_cost}")
