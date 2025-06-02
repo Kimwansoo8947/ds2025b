@@ -128,4 +128,4 @@ print(f"최소 비용의 도로 건설 비용 :  {mst_cost}")
 
 print('\nMST 간선')
 for cost, u,v in mst_edges:
-	print(f"{name_ary[u]} --- {name_ary[v]} : {cost}")
+	print(f"{name_ary[u]} --- {name_ary[v]} : {cost} ")
