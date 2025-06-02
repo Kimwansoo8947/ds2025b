@@ -14,35 +14,49 @@ def print_graph(g) :
 		print()
 	print()
 
-def find_vertex(g, find_vtx) : # 깊이 우선 탐색 재귀나 스택 사용 여기서는 스택 사용
-	stack = list()
+# def find_vertex(g, find_vtx) : # 깊이 우선 탐색 재귀나 스택 사용 여기서는 스택 사용
+# 	stack = list()
+# 	visited_ary = list()
+#
+# 	current = 0	# 시작 정점
+# 	stack.append(current)
+# 	visited_ary.append(current)
+#
+# 	while stack: # 스택 안에 뭐가 있을떄까지
+# 		next = None
+# 		for vertex in range(graph_size):
+# 			if g.graph[current][vertex] != 0:  # 연결되어 있으면 => 2차원 현재 행과 정점
+# 				if vertex in visited_ary:	# 방문한 적이 있는 정점
+# 					pass
+# 				else :			# 방문한 적이 없으면
+# 					next = vertex  #  다음 정점으로 지정 (다음 열로 이동)
+# 					break
+#
+# 		if next is not None:				# 다음에 방문할 정점이 있는 경우
+# 			current = next
+# 			stack.append(current)  # push
+# 			visited_ary.append(current)  # push (어디 방문 했는지 순서 기록)
+# 		else :					# 다음에 방문할 정점이 없는 경우
+# 			current = stack.pop() # 방문 할 떄가 없으면 되돌아옴
+#
+# 	if find_vtx in visited_ary: #visited_ary에 내가 찾은 값이 있으면 (도시가 연결되어 있는지)
+# 		return True
+# 	else :
+# 		return False
+
+# 재귀함수 이용
+def dfs(g,current, visited):
+	visited.append(current) # 시작위치 넣고 시작
+	for vertex in range(graph_size):
+		if g.graph[current][vertex]  > 0 and vertex not in visited:
+			dfs(g,vertex, visited)
+
+
+def find_vertex(g, find_vtx):
 	visited_ary = list()
-
-	current = 0	# 시작 정점
-	stack.append(current)
-	visited_ary.append(current)
-
-	while stack: # 스택 안에 뭐가 있을떄까지
-		next = None
-		for vertex in range(graph_size):
-			if g.graph[current][vertex] != 0:  # 연결되어 있으면 => 2차원 현재 행과 정점
-				if vertex in visited_ary:	# 방문한 적이 있는 정점
-					pass
-				else :			# 방문한 적이 없으면
-					next = vertex  #  다음 정점으로 지정 (다음 열로 이동)
-					break
-
-		if next is not None:				# 다음에 방문할 정점이 있는 경우
-			current = next
-			stack.append(current)  # push
-			visited_ary.append(current)  # push (어디 방문 했는지 순서 기록)
-		else :					# 다음에 방문할 정점이 없는 경우
-			current = stack.pop() # 방문 할 떄가 없으면 되돌아옴
-
-	if find_vtx in visited_ary: #visited_ary에 내가 찾은 값이 있으면 (도시가 연결되어 있는지)
-		return True
-	else :
-		return False
+	start = 0
+	dfs(g,start, visited_ary)
+	return find_vtx in visited_ary # True or False
 
 g1 = None
 name_ary = ['인천', '서울', '강릉', '대전', '광주', '부산']
