@@ -1,3 +1,6 @@
+from pickletools import read_stringnl_noescape
+
+
 class Graph:
 	def __init__ (self, size):
 		self.graph = [[0 for _ in range(size)] for _ in range(size)]
@@ -45,18 +48,18 @@ def print_graph(g) :
 # 		return False
 
 # 재귀함수 이용
-def dfs(g,current, visited):
-	visited.append(current) # 시작위치 넣고 시작
-	for vertex in range(graph_size):
-		if g.graph[current][vertex]  > 0 and vertex not in visited:
-			dfs(g,vertex, visited)
+def dfs(g,i, visited):
+	visited.append(i) # 시작위치 넣고 시작
+	for j in range(len(g.graph)):
+		if g.graph[i][j]  > 0 and j not in visited:
+			dfs(g,j, visited)
 
 
 def find_vertex(g, find_vtx):
-	visited_ary = list()
+	visited_ary = []
 	start = 0
 	dfs(g,start, visited_ary)
-	return find_vtx in visited_ary # True or False
+	return find_vtx in visited_ary # True or False (내가 찾고자 하는 도시가 있으면 True)
 
 g1 = None
 name_ary = ['인천', '서울', '강릉', '대전', '광주', '부산']
