@@ -124,11 +124,8 @@ for cost, s, e in mst_edges:
 print('최소 비용의 계산')
 print_graph(mst_graph)
 
-total_cost = 0
-for i in range(graph_size):
-	for k in range(graph_size):
-		if g1.graph[i][k] != 0:
-			total_cost = total_cost + g1.graph[i][k]
-
-total_cost = total_cost // 2 # 무방향 그래프니까 절반은 날려야함
 print(f"최소 비용의 도로 건설 비용 :  {mst_cost}")
+
+print('\nMST 간선')
+for cost, u,v in mst_edges:
+	print(f"{name_ary[u]} --- {name_ary[v]} : {cost}")
