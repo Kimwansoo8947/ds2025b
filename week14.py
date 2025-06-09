@@ -1,27 +1,45 @@
-n = int(input())  # N (명령어 개수)
-stack = []  # 파이썬의 리스트를 이용
+class TreeNode:
+    def __init__(self):
+        self.right = None
+        self.data = None
+        self.left = None
 
-for i in range(n):
-  order = input().strip()
-  if 'push' in order:  # push X: 정수 X를 스택에 넣는 연산이다.
-    number = order.split()  # ex) "push 1"  --> ["push", "1"]
-    stack.append(number[-1])  # "1"
-  elif order == 'pop':  # pop: 스택에서 가장 위에 있는 정수를 빼고, 그 수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
-    if len(stack) == 0:  # 스택이 비어 있으면
-      print(-1)
-    else:
-      # print(stack[-1])  # 출력
-      # stack.pop()  # 삭제. Last In First Out
-      print(stack.pop())  # 출력
-  elif order == 'size':  # size: 스택에 들어있는 정수의 개수를 출력한다.
-    print(len(stack))
-  elif order == 'empty':  # empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
-    if len(stack) == 0:  # 스택이 비어 있으면
-      print(1)
-    else:
-      print(0)
-  elif order == 'top':  # top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다. peek
-    if len(stack) == 0:  # 스택이 비어 있으면
-      print(-1)
-    else:
-      print(stack[-1])  # Top 값 출력
+
+def post_order(node):
+    if node is None:
+        return None
+    post_order(node.left)
+    post_order(node.right)
+    print(node.data, end = '-')
+
+def insert(root, value):
+    new_node = TreeNode()
+    new_node.data = value
+
+    if root is None:
+        return new_node
+
+    current  = root
+
+    while True:
+        if value < current.data:
+            if current.left is None:
+                current.left = new_node
+                break
+            current = current.left
+        else:
+            if current.right is None:
+                current.right = new_node
+                break
+            current = current.right
+
+    return root
+
+if __name__ == "__main__":
+    numbers = [50,30,2,45,28,5,98,52,60]
+    root = None
+
+    for number in numbers:
+        root = insert(root, number)
+
+    post_order(root)
