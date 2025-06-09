@@ -1,136 +1,90 @@
-# BST 이진 탐색 트리
-
-class TreeNode:
-    def __init__(self):
-        self.left = None
-        self.data = None
-        self.right = None
+from collections import  deque
 
 
-def pre_order(node): # P L R
-    if node is None:
-        return
-
-    print(node.data , end = '->')
-    pre_order(node.left)
-    pre_order(node.right)
-
-def in_order(node): # L P R
-    if node is None:
-        return
-
-    in_order(node.left)
-    print(node.data, end = '->')
-    in_order(node.right)
+class Graph:
+    def __init__(self, size):
+        self.size = size
+        self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
 
-def post_order(node): # L R P
-    if node is None:
-        return
+G1 = Graph(4)
+G2 = Graph(4)
+G_self = Graph(4)
 
-    post_order(node.left)
-    post_order(node.right)
-    print(node.data, end = '->')
+# 0 == A, 1 == B, 2==C, 3==D
+G1.graph[0][1] = 1; G1.graph[0][2] =1; G1.graph[0][3] = 1
+G1.graph[1][0] = 1; G1.graph[1][2] = 1
+G1.graph[2][0] = 1; G1.graph[2][1] = 1; G1.graph[2][3] = 1
+G1.graph[3][0] = 1; G1.graph[3][2] = 1
 
-
-# 삽입
-def insert(root, value):
-
-    new_node = TreeNode()
-    new_node.data = value
-
-    if root is None:
-        return new_node
-
-    current = root
-
-    while True:
-        if value < current.data:
-            if current.left is None:
-                current.left = new_node
-                break
-
-            current = current.left
-
-        else:
-            if current.right is None:
-                current.right = new_node
-                break
-
-            current = current.right
-
-
-    return root
-
-def search(find_number):
-    current = root
-
-    while True:
-        if find_number == current.data:
-            return True
-
-        elif find_number < current.data:
-            if current.left is None:
-                return False
-            current = current.left
-
-        else:
-            if current.right is None:
-                return  False
-            current = current.right
-
-def delete(node, value):
-    if node is None:
-        return None
-
-    if value < node.data:
-        node.left = delete(node.left, value)
-    elif value > node.data:
-        node.right = delete(node.right, value)
-    else:
-        if node.left is None:
-            return node.right
-        elif node.right is None:
-            return node.left
-
-        min_larger_node = node.right
-        while min_larger_node.left:
-            min_larger_node = min_larger_node.left
-
-        node.data = min_larger_node.data
-        node.right = delete(node.right, min_larger_node.data)
-
-    return node
-
-
-if __name__ == "__main__":
-    numbers = [10,15,8,3,9,14]
-    root = None
-
-    for number in numbers:
-       root = insert(root, number)
-
-
-    print("BST 구성 완료")
-    post_order(root)
-    print()
-    in_order(root)
-    print()
-    pre_order(root)
+print("G1 무방향 그래프")
+for r in range(G1.size):
+    for c in range(G1.size):
+        print(G1.graph[r][c], end = ' ')
     print()
 
-    number = int(input("찾고자 하는 값: "))
+# 0 == A, 1 == B, 2==C, 3==D
 
-    if search(number):
-        print(f"{number}을 찾았습니다.")
-    else:
-        print(f"{number}이(가) 존재하지 않습니다.")
+G2.graph[0][1] = 1; G2.graph[0][2] = 1
+G2.graph[3][0] = 1; G2.graph[3][2] = 1
 
-    del_number = int(input("제거하는 값: "))
-    root = delete(root, del_number)
-    post_order(root)
+print("G2 방향 그래프")
+for r in range(G2.size):
+    for c in range(G2.size):
+        print(G2.graph[r][c], end = ' ')
     print()
-    in_order(root)
+
+# 0 == A, 1 == B, 2==C, 3==D
+G_self.graph[0][3] = 1
+G_self.graph[1][2] = 1; G_self.graph[1][3] = 1
+G_self.graph[2][1] = 1
+G_self.graph[3][0] = 1; G_self.graph[3][1] = 1
+
+
+print("G_self 무방향 그래프")
+for r in range(G_self.size):
+    for c in range(G_self.size):
+        print(G_self.graph[r][c], end = ' ')
     print()
-    pre_order(root)
-    print()
+
+
+graph = [
+    [0, 1 ,1, 0, 0, 0, 0, 0], # 2. A [D, C]
+    [1, 0, 0, 1, 0, 0, 0, 0], # 1. B [A, D]
+    [1, 0, 0, 1, 0, 0, 0, 0], # 4. C [E, F, G]
+    [0, 1, 1, 0, 1, 1, 1, 0], # 3. D [C, E, F, G]
+    [0, 0, 0, 1, 0, 1, 0, 0], # 5. E [F, G]
+    [0, 0, 0, 1, 1, 0, 0, 0], # 6. F [G]
+    [0, 0, 0, 1, 0, 0, 0, 1], # 7. G [H]
+    [0, 0, 0, 0, 0, 0, 1, 0]  # 8. H
+]
+
+def dfs(g, i, visited):
+    visited[i] = 1
+    print(chr(ord('A')+i), end = ' ')
+
+    for j in range(len(g)):
+        if g[i][j] == 1 and not visited[j]:
+            dfs(g, j, visited)
+
+
+def bfs(g, i, visited):
+    queue = deque([i])
+    visited[i] =True
+
+    while queue:
+        i = queue.popleft()
+        print(chr(ord('A')+i), end = ' ')
+
+        for j in range(len(g)):
+            if g[i][j] ==1 and not visited[j]:
+                queue.append(j)
+                visited[j] = True
+
+
+visited_dfs = [0 for _ in range(len(graph))]
+visited_bfs = [False for _ in range(len (graph))]
+
+dfs(graph, 0, visited_dfs)
+print()
+bfs(graph,1, visited_bfs)
